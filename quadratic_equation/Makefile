@@ -25,9 +25,11 @@ OBJECTS_TEST = $(SOURCES_TEST:.c=.o)
 EXECUTABLE = $(SRC_DIR)/bin
 TESTS = $(TEST_DIR)/test
 
-.PHONY: clean solver test
+.PHONY: clean build run test
 
-solver: $(EXECUTABLE)
+build: $(EXECUTABLE) # TODO: prefer separate task for building
+
+run: $(EXECUTABLE)
 	./$(EXECUTABLE)
 
 test: $(TESTS)

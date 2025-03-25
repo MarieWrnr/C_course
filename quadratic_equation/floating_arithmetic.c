@@ -7,6 +7,8 @@
 
 const float epsilon = 1e-6; 
 
+// TODO: doesn't feel like general-purspose floating arithmetic
+//       I consider this to be part of equation solver's contract, so it really should be moved there
 bool are_coefficients_infinity (float a, float b, float c) {
     //  общая проверка на бесконечность
     return isinf(a) || isinf(b) || isinf(c); 

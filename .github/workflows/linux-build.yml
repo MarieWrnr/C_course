@@ -1,0 +1,33 @@
+name: Build project
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+env:
+  BUILD_TYPE: Release
+
+jobs:
+  ubuntu-build-clang:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - uses: awalsh128/cache-apt-pkgs-action@latest
+      with:
+        packages: build-essential clang libcmocka-dev
+
+    - run: make -C quadratic_equation
+
+  ubuntu-build-gcc:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - uses: awalsh128/cache-apt-pkgs-action@latest
+      with:
+        packages: build-essential gcc libcmocka-dev
+
+    - run: make -C quadratic_equation

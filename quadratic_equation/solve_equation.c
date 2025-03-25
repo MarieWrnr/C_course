@@ -9,6 +9,7 @@
 
 // backend functions | for solving equation 
 
+// TODO: static?
 equation_type define_equation_type(float a, float b) {
     bool is_a_zero = is_equal(a, 0);
     bool is_b_zero = is_equal(b, 0);
@@ -19,10 +20,12 @@ equation_type define_equation_type(float a, float b) {
     return QUADRATIC_EQUATION;
 }
 
+// TODO: static?
 float calculate_discriminant(float a, float b, float c) { 
     return b * b - 4 * a * c;
 }
 
+// TODO: static?
 equation_solution solve_linear_equation(equation *data) {
     equation_solution linear_solution;
     float b = data->b;
@@ -67,15 +70,16 @@ equation_solution solve_equation(equation *data) {
     data->type = define_equation_type(data->a, data->b); // Saving equation type
 
     switch(data->type) { // Choosing how to solve the equation
-        case LINEAR_EQUATION:
-            solution = solve_linear_equation(data);
-            break;
-
         case QUADRATIC_EQUATION:
             solution = solve_quadratic_equation(data); 
             break;
 
-        case NO_EQUATION_TYPE:
+        case LINEAR_EQUATION:
+            solution = solve_linear_equation(data);
+            break;
+
+        case NO_EQUATION_TYPE: // TODO: add brackets { around declaration to make it compile without C23 extension
+            // TODO: solve_constant_equation(data); // ?
             bool is_c_zero = is_equal(data->c, 0);
 
             if (is_c_zero) {

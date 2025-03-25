@@ -70,6 +70,21 @@ void display_roots(equation *data, equation_solution *solution) {
 
 void store_equation_part(float coef, char* exp, char* equation_buf) { // exp - степень;
 	if (!is_equal(coef, 0)) {
+        // TODO: sprintf returns how many chars it printed
+        //
+        // 1. // You can pass shift into buffer that gradually grows
+        //    char buffer[256] = {};
+        //    size_t shift = 0;
+        //
+		//    shift += sprintf(buffer + shift, "%d", 5);
+		//    shift += sprintf(buffer + shift, "%d", 6);
+        //
+        // 2. // You can update pointer to point to empty part of the buffer
+        //    char buffer[256] = {};
+        //    char *place_to_write = buffer;
+        //
+		//    place_to_write += sprintf(place_to_write, "%d", 5);
+		//    place_to_write += sprintf(place_to_write, "%d", 6);
 
 		sprintf(equation_buf, "%s%+f%s", equation_buf, coef, exp); // записывает число в строковый буфер (по пути преобразовывая его)
 	}
