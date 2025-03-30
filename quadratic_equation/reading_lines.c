@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdbool.h>
 
-void read_line_end() { // TODO: you don't read "line end", you read to it, sorry my bad
+void read_to_line_end() {
     while (getchar() != '\n') {
         continue;       
     }

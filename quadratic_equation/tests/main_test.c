@@ -1,19 +1,20 @@
-// TODO: you included .c file?
-#include "test_arithmetic.c"
-//#include "../floating_arithmetic.h"
-// работа с аргументами переменной длины (когда их количество меняется)
-#include <stdarg.h> // TODO: is this necessary?
-// for working with NULL Objects
-#include <stddef.h> // TODO: is this necessary?
-// exception handling
-// TODO: doesn't cmocka include this by itself?
-#include <setjmp.h> // TODO: is this necessary?
+#include "test_arithmetic.h"
+#include "test_solver.h"
 #include <cmocka.h>
 
 
+const struct CMUnitTest solver_tests[] = {
+    cmocka_unit_test(test_are_coefficients_infinity),
+};
+
+const struct CMUnitTest floating_arithmetic_tests[] = {
+    cmocka_unit_test(test_is_equal),
+    cmocka_unit_test(test_approximate_to_zero),
+};
+
 int main(void) {
-    const struct CMUnitTest tests[] = {
-        cmocka_unit_test(test_are_coefficients_infinity),
-    };
-    return cmocka_run_group_tests(tests, NULL, NULL);
+    int status = 0;
+    status += cmocka_run_group_tests(floating_arithmetic_tests, NULL, NULL);
+    status += cmocka_run_group_tests(solver_tests, NULL, NULL);
+    return status;
 }

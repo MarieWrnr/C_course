@@ -126,7 +126,7 @@ void read_coefficients(equation *data) {
 		}
 
 		printf("Coefficients can't be infinite. Try again!");
-		read_line_end();
+		read_to_line_end();
 	} 
 }
 

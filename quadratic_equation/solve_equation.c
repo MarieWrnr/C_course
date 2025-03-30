@@ -9,8 +9,13 @@
 
 // backend functions | for solving equation 
 
-// TODO: static?
-equation_type define_equation_type(float a, float b) {
+bool are_coefficients_infinity (float a, float b, float c) {
+    //  общая проверка на бесконечность
+    return isinf(a) || isinf(b) || isinf(c); 
+}
+
+
+static equation_type define_equation_type(float a, float b) {
     bool is_a_zero = is_equal(a, 0);
     bool is_b_zero = is_equal(b, 0);
 
@@ -20,13 +25,12 @@ equation_type define_equation_type(float a, float b) {
     return QUADRATIC_EQUATION;
 }
 
-// TODO: static?
-float calculate_discriminant(float a, float b, float c) { 
+static float calculate_discriminant(float a, float b, float c) { 
     return b * b - 4 * a * c;
 }
 
-// TODO: static?
-equation_solution solve_linear_equation(equation *data) {
+
+static equation_solution solve_linear_equation(equation *data) {
     equation_solution linear_solution;
     float b = data->b;
     float c = data->c;
@@ -78,7 +82,7 @@ equation_solution solve_equation(equation *data) {
             solution = solve_linear_equation(data);
             break;
 
-        case NO_EQUATION_TYPE: // TODO: add brackets { around declaration to make it compile without C23 extension
+        case NO_EQUATION_TYPE: {
             // TODO: solve_constant_equation(data); // ?
             bool is_c_zero = is_equal(data->c, 0);
 
@@ -91,7 +95,7 @@ equation_solution solve_equation(equation *data) {
             }
 
             break;
-
+        }
         default:
             assert(false && "Unhandled equation type");
             break;
