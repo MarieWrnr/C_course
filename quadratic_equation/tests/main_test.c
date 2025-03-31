@@ -5,6 +5,10 @@
 
 const struct CMUnitTest solver_tests[] = {
     cmocka_unit_test(test_are_coefficients_infinity),
+    cmocka_unit_test(test_define_equation_type),
+    cmocka_unit_test(test_solve_linear_equation),
+    cmocka_unit_test(test_solve_quadratic_equation)
+
 };
 
 const struct CMUnitTest floating_arithmetic_tests[] = {

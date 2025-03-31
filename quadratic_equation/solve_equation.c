@@ -15,7 +15,7 @@ bool are_coefficients_infinity (float a, float b, float c) {
 }
 
 
-static equation_type define_equation_type(float a, float b) {
+equation_type define_equation_type(float a, float b) {
     bool is_a_zero = is_equal(a, 0);
     bool is_b_zero = is_equal(b, 0);
 
@@ -30,11 +30,12 @@ static float calculate_discriminant(float a, float b, float c) {
 }
 
 
-static equation_solution solve_linear_equation(equation *data) {
+equation_solution solve_linear_equation(equation *data) {
     equation_solution linear_solution;
     float b = data->b;
     float c = data->c;
 
+    assert(b != 0);
     linear_solution.roots[0] = -c / b;
     linear_solution.type = ONE_LINEAR_ROOT;
 
